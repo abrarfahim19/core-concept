@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -8,6 +9,8 @@ function App() {
       <header className='App-header'>
         <h1 style={{textAlign:'center'}}> Let's go</h1>
 
+        <Counter></Counter>
+
         {/* first way to do this is by ... [ThreeDots]
         second way to do this is by destructure
         third way to do this is by array.map(product=>product.parameter)
@@ -16,21 +19,29 @@ function App() {
         <h2>The list of products:</h2>
          <ul>
            {
-             products.map(product=> <li> {product.name +'And Price is '+ product.price} </li>)
+             products.map(product=> <li> {product.name +' And Price is '+ product.price} </li>)
            }
          </ul>
         
         {
-          products.map(product=> <Product product = {products} > </Product>)
+          products.map(product => <Product  product = {product} > </Product>)
         }
 
-
+      
         <Here  name='Abrar'></Here>
         <Here name= 'Fahim'></Here>
         <Here name= 'Patwari'></Here>
       </header>
     </div>  
   );
+}
+
+
+function Counter(props) {
+  const [count, setCount] = useState(0)
+  return(
+    <h3> Counted: {count}</h3>
+  )
 }
 
 function Product(props){
@@ -42,11 +53,12 @@ function Product(props){
     borderRadius: '5px',
     height:'200px',
     width:'200px',
+    margin:'10px',
   }
   return(
     <div style={productStyle}>
-      <h3>{props.name}</h3>
-      <h2>{props.price}</h2>
+      <h3>{props.product.name}</h3>
+      <h2>{props.product.price}</h2>
       <button>Buy Now</button>
     </div>
   )
